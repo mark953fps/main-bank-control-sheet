@@ -1,0 +1,9 @@
+<div class="flex-form-container">
+    <div class="flex-form-checkbox">
+        <ng-container *ngFor="let data of dataCheckBox">
+            <div class="flex-label">
+                <p-checkbox [name]="data.name" [label]="data.name"></p-checkbox>
+            </div>
+        </ng-container>
+    </div>
+</div>

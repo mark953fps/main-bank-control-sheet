@@ -1,0 +1,13 @@
+.flex-label {
+  padding: 10px;
+  width: 200px;
+}
+.flex-form-checkbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex-form-container {
+  display: table;
+  width: 410px;
+  margin: auto;
+}
