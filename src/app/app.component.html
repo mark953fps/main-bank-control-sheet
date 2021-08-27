@@ -1,9 +1,40 @@
-<div class="flex-form-container">
-    <div class="flex-form-checkbox">
-        <ng-container *ngFor="let data of dataCheckBox">
-            <div class="flex-label">
-                <p-checkbox [name]="data.name" [label]="data.name"></p-checkbox>
+<form [formGroup]="searchForm">
+    <div class="row">
+        <div class="col-lg">
+            <div class="p-2">
+                <label>Location : </label><br>
+                <p-autoComplete type="text" [suggestions]="filteredLocation" formControlName="location"
+                    (onSelect)="onSelectLocation($event)" (completeMethod)="filterLocation($event)" [size]="30"
+                    [minLength]="1" placeholder="Enter a location" [dropdown]="true">
+                    <ng-template let-location pTemplate="item">
+                        <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+                            <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{location.id}}</div>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+
+                <pre>{{ location | json }}</pre>
             </div>
-        </ng-container>
+        </div>
+
+        <div class="col-lg">
+            <div class="p-2">
+                <label>Gaming Date : </label><br>
+                <p-calendar [(ngModel)]="value" placeholder="Select Date" formControlName="gamingDate"></p-calendar>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <div class="p-2">
+                <label>Shift Type : </label><br>
+                <input type="text" pInputText placeholder="Enter a shift type" formControlName="shiftType"/>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <div class="p-2">
+                <button type="button" class="btn btn-primary" (click)="onRetrieve()">Retrieve</button>
+            </div>
+        </div>
     </div>
-</div>
+</form>

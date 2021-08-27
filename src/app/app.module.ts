@@ -16,6 +16,9 @@ import { TooltipModule } from 'primeng/tooltip';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { CheckboxModule } from 'primeng/checkbox';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   imports: [
@@ -31,7 +34,11 @@ import { CheckboxModule } from 'primeng/checkbox';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CheckboxModule
+    CheckboxModule,
+    AutoCompleteModule,
+    CalendarModule,
+    InputTextModule,
+    ReactiveFormsModule
   ],
   declarations: [AppComponent, HelloComponent],
   bootstrap: [AppComponent]

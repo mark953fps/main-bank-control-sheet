@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'my-app',
@@ -6,15 +7,69 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  dataCheckBox: any = [
-    { id: 1, name: 'checkbox1' },
-    { id: 2, name: 'checkbox2' },
-    { id: 3, name: 'checkbox3' },
-    { id: 4, name: 'checkbox4' },
-    { id: 5, name: 'checkbox5' },
-    { id: 6, name: 'checkbox6' },
-    { id: 7, name: 'checkbox7' }
+  public searchForm: FormGroup;
+
+  locationData: any[] = [
+    {
+      id: 'MB01',
+      activity: 's6d5f4sdf6545f',
+      curCode: 'HKD',
+      gamingDate: '19/08/2021',
+      shiftCode: 'D'
+    },
+    {
+      id: 'MB02',
+      activity: 'df54gdfg4d5fg',
+      curCode: 'HKD',
+      gamingDate: '20/08/2021',
+      shiftCode: 'B'
+    },
+    {
+      id: 'MB03',
+      activity: 'fd7df98g7',
+      curCode: 'HKD',
+      gamingDate: '21/08/2021',
+      shiftCode: 'C'
+    }
   ];
 
-  public ngOnInit() {}
+  filteredLocation: any[];
+
+  location: string;
+
+  constructor(private fb: FormBuilder) {}
+
+  public ngOnInit(): void {
+    this.searchForm = this.fb.group({
+      location: ['', Validators.required],
+      gamingDate: [new Date(), Validators.required],
+      shiftType: ['', Validators.required]
+    });
+  }
+
+  filterLocation(event) {
+    this.filteredLocation = [];
+    for (let i = 0; i < this.locationData.length; i++) {
+      let location = this.locationData[i];
+      if (location.id.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+        this.filteredLocation.push(location);
+      }
+    }
+  }
+
+  onSelectLocation(event) {
+    console.log(event, 'onselect');
+    let dateSplit = [];
+    dateSplit = event.gamingDate.split('/');
+
+    this.searchForm.controls.location.setValue(event.id);
+    this.searchForm.controls.gamingDate.setValue(
+      new Date(`${dateSplit[1]}/${dateSplit[0]}/${dateSplit[2]}`)
+    );
+    this.searchForm.controls.shiftType.setValue(event.shiftCode);
+  }
+
+  onRetrieve() {
+    console.log(this.searchForm.value, 'check check');
+  }
 }
