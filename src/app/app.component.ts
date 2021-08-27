@@ -62,11 +62,13 @@ export class AppComponent implements OnInit {
     let dateSplit = [];
     dateSplit = event.gamingDate.split('/');
 
-    this.searchForm.controls.location.setValue(event.id);
-    this.searchForm.controls.gamingDate.setValue(
-      new Date(`${dateSplit[1]}/${dateSplit[0]}/${dateSplit[2]}`)
-    );
-    this.searchForm.controls.shiftType.setValue(event.shiftCode);
+    setTimeout(() => {
+      this.searchForm.controls.location.setValue(event.id);
+      this.searchForm.controls.gamingDate.setValue(
+        new Date(`${dateSplit[1]}/${dateSplit[0]}/${dateSplit[2]}`)
+      );
+      this.searchForm.controls.shiftType.setValue(event.shiftCode);
+    }, 100);
   }
 
   onRetrieve() {

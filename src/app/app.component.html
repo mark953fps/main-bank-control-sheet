@@ -8,7 +8,9 @@
                     [minLength]="1" placeholder="Enter a location" [dropdown]="true">
                     <ng-template let-location pTemplate="item">
                         <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
-                            <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{location.id}}</div>
+                            <div style="font-size:18px;float:right;margin:10px 10px 0 0">
+                                {{location.id}}&nbsp;&nbsp;&nbsp;&nbsp;{{location.gamingDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{location.shiftCode}}
+                            </div>
                         </div>
                     </ng-template>
                 </p-autoComplete>
