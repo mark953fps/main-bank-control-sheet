@@ -17,24 +17,26 @@
             </div>
         </div>
 
-        <div class="col-lg">
-            <div class="p-2">
-                <label>Gaming Date : </label><br>
-                <p-calendar [(ngModel)]="value" placeholder="Select Date" formControlName="gamingDate"></p-calendar>
+        <ng-container *ngIf="searchForm.controls.location.valid">
+            <div class="col-lg">
+                <div class="p-2">
+                    <label>Gaming Date : </label><br>
+                    <p-calendar [(ngModel)]="value" placeholder="Select Date" formControlName="gamingDate"></p-calendar>
+                </div>
             </div>
-        </div>
 
-        <div class="col-lg">
-            <div class="p-2">
-                <label>Shift Type : </label><br>
-                <input type="text" pInputText placeholder="Enter a shift type" formControlName="shiftType"/>
+            <div class="col-lg">
+                <div class="p-2">
+                    <label>Shift Type : </label><br>
+                    <input type="text" pInputText placeholder="Enter a shift type" formControlName="shiftType"/>
+                </div>
             </div>
-        </div>
 
-        <div class="col-lg">
-            <div class="p-2">
-                <button type="button" class="btn btn-primary" (click)="onRetrieve()">Retrieve</button>
+            <div class="col-lg">
+                <div class="p-2">
+                    <button type="button" class="btn btn-primary" (click)="onRetrieve()">Retrieve</button>
+                </div>
             </div>
-        </div>
+        </ng-container>
     </div>
 </form>

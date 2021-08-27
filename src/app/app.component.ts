@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
   }
 
   onSelectLocation(event) {
-    console.log(event, 'onselect');
+    console.log(event, 'on select location');
     let dateSplit = [];
     dateSplit = event.gamingDate.split('/');
 
@@ -70,6 +70,6 @@ export class AppComponent implements OnInit {
   }
 
   onRetrieve() {
-    console.log(this.searchForm.value, 'check check');
+    console.log(this.searchForm.value, 'on retrieve');
   }
 }
