@@ -59,11 +59,13 @@ export class AppComponent implements OnInit {
 
   onSelectLocation(event) {
     console.log(event, 'on select location');
+
     let dateSplit = [];
     dateSplit = event.gamingDate.split('/');
 
+    this.searchForm.controls.location.setValue(event.id);
+
     setTimeout(() => {
-      this.searchForm.controls.location.setValue(event.id);
       this.searchForm.controls.gamingDate.setValue(
         new Date(`${dateSplit[1]}/${dateSplit[0]}/${dateSplit[2]}`)
       );
