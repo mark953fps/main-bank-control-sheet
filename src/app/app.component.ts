@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import moment from 'moment';
 
 @Component({
   selector: 'my-app',
@@ -75,5 +76,9 @@ export class AppComponent implements OnInit {
 
   onRetrieve() {
     console.log(this.searchForm.value, 'on retrieve');
+    console.log(
+      moment(this.searchForm.get('gamingDate').value).format('MM/DD/YYYY'),
+      'update date'
+    );
   }
 }
