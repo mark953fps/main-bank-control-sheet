@@ -34,7 +34,9 @@
             <div class="col-lg">
                 <div class="p-2">
                     <label>Shift Type : </label><br>
-                    <input type="text" pInputText placeholder="Enter a shift type" formControlName="shiftType"/>
+                    <p-dropdown [options]="shiftData" formControlName="shiftType" optionLabel="code"
+                        [autoDisplayFirst]="false">
+                    </p-dropdown>
                 </div>
             </div>
         </div>

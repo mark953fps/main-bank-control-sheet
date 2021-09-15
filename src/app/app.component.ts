@@ -34,6 +34,8 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  shiftData: any[] = [{ id: 1, code: 'D' }, { id: 2, code: 'B' }];
+
   filteredLocation: any[];
 
   location: string;
@@ -70,15 +72,21 @@ export class AppComponent implements OnInit {
       this.searchForm.controls.gamingDate.setValue(
         new Date(`${dateSplit[1]}/${dateSplit[0]}/${dateSplit[2]}`)
       );
-      this.searchForm.controls.shiftType.setValue(event.shiftCode);
+
+      let index = this.shiftData.findIndex(
+        shif => shif.code === event.shiftCode
+      );
+      index >= 0
+        ? this.searchForm.controls.shiftType.setValue(this.shiftData[index])
+        : alert(
+            `Shift code ${
+              event.shiftCode
+            } is not exist in shift type select form.`
+          );
     }, 100);
   }
 
   onRetrieve() {
     console.log(this.searchForm.value, 'on retrieve');
-    console.log(
-      moment(this.searchForm.get('gamingDate').value).format('MM/DD/YYYY'),
-      'update date'
-    );
   }
 }
