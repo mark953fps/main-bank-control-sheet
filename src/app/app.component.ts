@@ -10,7 +10,7 @@ import moment from 'moment';
 export class AppComponent implements OnInit {
   public searchForm: FormGroup;
 
-  locationData: any[] = [
+  public locationData: any[] = [
     {
       id: 'MB01',
       activity: 's6d5f4sdf6545f',
@@ -35,9 +35,7 @@ export class AppComponent implements OnInit {
   ];
 
   shiftData: any[] = [{ id: 1, code: 'D' }, { id: 2, code: 'B' }];
-
   filteredLocation: any[];
-
   location: string;
 
   constructor(private fb: FormBuilder) {}
@@ -69,24 +67,21 @@ export class AppComponent implements OnInit {
     this.searchForm.controls.location.setValue(event.id);
 
     setTimeout(() => {
-      this.searchForm.controls.gamingDate.setValue(
-        new Date(`${dateSplit[1]}/${dateSplit[0]}/${dateSplit[2]}`)
-      );
-
-      let index = this.shiftData.findIndex(
-        shif => shif.code === event.shiftCode
-      );
-      index >= 0
-        ? this.searchForm.controls.shiftType.setValue(this.shiftData[index])
-        : alert(
-            `Shift code ${
-              event.shiftCode
-            } is not exist in shift type select form.`
-          );
+      this.searchForm.controls.gamingDate.setValue(new Date(`${dateSplit[1]}/${dateSplit[0]}/${dateSplit[2]}`));
+      let index = this.shiftData.findIndex(shif => shif.code === event.shiftCode);
+      index >= 0 ? this.searchForm.controls.shiftType.setValue(this.shiftData[index]) : this.searchForm.controls.shiftType.setValue(null);
     }, 100);
   }
 
   onRetrieve() {
     console.log(this.searchForm.value, 'on retrieve');
+
+    const params = {
+      location: this.searchForm.controls.location.value,
+      gamingDate: this.searchForm.controls.gamingDate.value,
+      shiftType: this.searchForm.controls.shiftType.value ? this.searchForm.controls.shiftType.value['code'] : null
+    };
+
+    console.log(params, 'on retrieve');
   }
 }
